@@ -232,14 +232,20 @@ function getWeekNumberByDate(date) {
  */
 function getNextFridayThe13th(date) {
   const nextDate = new Date(date);
-  nextDate.setDate(nextDate.getDate() + 1);
+  nextDate.setDate(1);
+  nextDate.setMonth(nextDate.getMonth() + 1);
 
-  while (true) {
-    if (nextDate.getDay() === 5 && nextDate.getDate() === 13) {
+  for (let i = 0; i < 12; i += 1) {
+    nextDate.setDate(13);
+
+    if (nextDate.getDay() === 5) {
       return nextDate;
     }
-    nextDate.setDate(nextDate.getDate() + 1);
+
+    nextDate.setMonth(nextDate.getMonth() + 1);
   }
+
+  return null;
 }
 
 /**
